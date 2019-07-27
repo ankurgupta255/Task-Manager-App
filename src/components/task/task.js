@@ -9,9 +9,9 @@ const Task=(props)=>{
 		<div> 
 		<Card bg={props.completed ? "success" : "warning"} text={props.completed ? "white" : "brown"} border="dark" >
 		    <Card.Header>Card
-		    <Edittask description={props.description} id={props.id} token={props.token} />
-		    <Markcomp id={props.id} token={props.token} />
-		    <Deletetask id={props.id} token={props.token} />
+		    <Edittask description={props.description} id={props.id} token={props.token} onRouteChange={props.onRouteChange}/>
+		    <Markcomp id={props.id} token={props.token} onRouteChange={props.onRouteChange} />
+		    <Deletetask id={props.id} token={props.token} onRouteChange={props.onRouteChange} />
 		    </Card.Header>
 		    <Card.Body>
 		      <Card.Text>{props.description}</Card.Text>

@@ -22,7 +22,8 @@ class Deletetask extends React.Component{
 			method: 'DELETE',
 			headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.state.token},
 		}).then(response=>response.json()).then(task=>{
-			alert("Your Changes have been Saved Successfully, Sign In again to see the Changes.");
+			this.props.onRouteChange('logout')
+			alert("Your Task has been deleted Successfully, Sign In again to see the Changes.");
 		})
 	}
 	render(){

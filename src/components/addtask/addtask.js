@@ -35,8 +35,9 @@ class Addtask extends React.Component{
 	      	completed: this.state.completed
 	      })
 		}).then(response=>response.json()).then(task=>{
-			if(this.props.tasks.length){
-				this.props.tasks.concat(task)
+			if(this.props.tasks){
+				this.props.tasks.push(task)
+				this.props.onRouteChange('dashboard')
 			}
 			alert("Your Task has been Added Successfully, Sign In again to see the Changes.");
 		})

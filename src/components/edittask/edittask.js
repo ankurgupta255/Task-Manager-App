@@ -29,7 +29,8 @@ class Edittask extends React.Component{
 	      	description: this.state.description
 	      })
 		}).then(response=>response.json()).then(task=>{
-			alert("Your Changes have been Saved Successfully, Sign In again to see the Changes.");
+			this.props.onRouteChange('dashboard')
+			alert("Your Task has been Edited Successfully, Sign In again to see the Changes.");
 		})
 	}
 	render(){

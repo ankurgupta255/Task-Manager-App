@@ -1,7 +1,7 @@
 import React from 'react';
 import Task from '../task/task.js';
 
-const Tasklist=({tasks,token})=>{
+const Tasklist=({tasks,token,onRouteChange})=>{
 	const TaskComponent=tasks.map((user, i)=>{
 		return <Task
 		createdAt={tasks[i].createdAt}
@@ -9,6 +9,7 @@ const Tasklist=({tasks,token})=>{
 		description={tasks[i].description}
 		completed={tasks[i].completed}
 		token={token}
+		onRouteChange={onRouteChange}
 		id={tasks[i]._id}
 		/>
 	})

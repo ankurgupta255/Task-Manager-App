@@ -5,6 +5,7 @@ import Tasklist from '../tasklist/tasklist.js';
 import Addtask from '../addtask/addtask.js';
 import Edituser from '../edituser/edituser.js';
 import Editpic from '../editpic/editpic.js';
+import Deleteuser from '../deleteuser/deleteuser.js';
 
 class Dashboard extends React.Component{
 	constructor(props){
@@ -34,8 +35,8 @@ class Dashboard extends React.Component{
 				  <Card.Header as="h4">All Tasks</Card.Header>
 				  <Card.Body>
 				  {(this.state.tasks.length ? <div>
-				  	<Tasklist tasks={this.state.tasks} token={this.props.token}/>
-				  	<Addtask user={this.props.user} token={this.props.token} tasks={this.state.tasks}/>
+				  	<Tasklist tasks={this.state.tasks} token={this.props.token} onRouteChange={this.props.onRouteChange}/>
+				  	<Addtask user={this.props.user} token={this.props.token} tasks={this.state.tasks} onRouteChange={this.props.onRouteChange}/>
 				    </div> : <div>
 				  	<h5>You have not Created Any Tasks yet</h5>
 				  	<Addtask user={this.props.user} token={this.props.token}/>
@@ -54,9 +55,10 @@ class Dashboard extends React.Component{
 				  	<h1 class="abc">{this.props.user.name}</h1>
 				  	<h2 class="abc">Age: {this.props.user.age}</h2>
 				  	<h4 class="abc">{this.props.user.email}</h4>
-				    <Edituser user={this.props.user} token={this.props.token}/>
+				    <Edituser user={this.props.user} token={this.props.token} loadUser={this.props.loadUser}/>
 				    <br />
 				    <Editpic user={this.props.user} token={this.props.token} />
+				    <Deleteuser user={this.props.user} token={this.props.token} onRouteChange={this.props.onRouteChange}/>
 				  </Card.Body>
 				</Card>
 				<br />

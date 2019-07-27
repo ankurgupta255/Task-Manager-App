@@ -74,7 +74,7 @@ class App extends Component{
     return (
       <div>
       <Header isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange} onButtonSubmit={this.onButtonSubmit} />
-      {(this.state.route === 'signin' ? <Signin onRouteChange={this.onRouteChange} onTokenChange={this.onTokenChange} loadUser={this.loadUser}/> : (this.state.route === 'register' ? <Register onRouteChange={this.onRouteChange} onTokenChange={this.onTokenChange} loadUser={this.loadUser}/> : (this.state.route=== 'dashboard' ? <Dashboard token={this.state.token} user={this.state.user}/> : <Navigation />)))}
+      {(this.state.route === 'signin' ? <Signin onRouteChange={this.onRouteChange} onTokenChange={this.onTokenChange} loadUser={this.loadUser}/> : (this.state.route === 'register' ? <Register onRouteChange={this.onRouteChange} onTokenChange={this.onTokenChange} loadUser={this.loadUser}/> : (this.state.route=== 'dashboard' ? <Dashboard token={this.state.token} user={this.state.user} onRouteChange={this.onRouteChange} loadUser={this.loadUser}/> : <Navigation />)))}
       <Footer />
       </div>
     );

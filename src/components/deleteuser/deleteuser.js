@@ -1,14 +1,11 @@
 import React,{useState} from 'react';
 import {Modal, Button} from 'react-bootstrap';
-import './edituser.css';
 
 class Edituser extends React.Component{
 	constructor(props){
 		super()
 		this.state={
-			name: props.user.name,
-			age: props.user.age,
-			password: props.user.password
+			id: props.user._id,
 		}
 	}
 	handleClose = () => {
@@ -30,50 +27,36 @@ class Edituser extends React.Component{
 	}
 	onButtonSubmit=()=>{
 		fetch('https://my-task-manager-api.herokuapp.com/users/me',{
-			method: 'PATCH',
+			method: 'DELETE',
 			headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.props.token},
 			body: JSON.stringify({
-	      	name: this.state.name,
-	      	age: this.state.age,
-	      	password: this.state.password
+	      	_id: this.state.id
 	      })
 		}).then(response=>response.json()).then(user=>{
-			this.props.loadUser(user)
-			alert("Your Changes have been Saved Successfully, Sign In again to see the Changes.")
+			this.props.onRouteChange('logout')
+			alert("Your Account Has been Successfully Deleted")
 		})
 	}
 	render(){
 		return(
 			<div>
 			<br />
-			<br />
 		      <Button variant="primary" onClick={this.handleShow}>
-		        Edit User Profile
-		      </Button>
+		        Delete User Account
+		        </Button>
 		      <Modal show={this.state.show} onHide={this.handleClose}>
 		        <Modal.Header closeButton>
-		          <b>Edit User Profile</b>
+		          <b>Delete User Account</b>
 		        </Modal.Header>
 		        <Modal.Body>
-		        <div className="measure">
-				    <label className="db fw6 lh-copy f6" for="name">Name</label>
-			        <input onChange={this.onNameChange} className="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" name="name"  id="name"/>
-				</div>
-				<div className="measure">
-				    <label className="db fw6 lh-copy f6" for="age">Age</label>
-			        <input onChange={this.onAgeChange} className="input-reset ba b--black-20 pa2 mb2 db w-100" type="number" name="age"  id="age" />
-				</div>
-				<div className="measure">
-				    <label className="db fw6 lh-copy f6" for="password">Password</label>
-			        <input onChange={this.onPasswordChange} className="input-reset ba b--black-20 pa2 mb2 db w-100" type="password" name="password"  id="password"/>
-				</div>
-		        </Modal.Body>
+				    <p>Are you sure you want to delete Your Account?</p>
+				</Modal.Body>
 		        <Modal.Footer>
 		          <Button variant="secondary" onClick={this.handleClose}>
-		            Close
+		            No, Go Back
 		          </Button>
 		          <Button variant="primary" onClick={this.onButtonSubmit}>
-		            Save User Profile
+		            Yes, Go Ahead
 		          </Button>
 		        </Modal.Footer>
 		      </Modal>
